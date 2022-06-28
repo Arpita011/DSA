@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<string> divideString(string s, int k, char fill) {
+        int i, n = s.length();
+        vector<string> ans;
+        for (i = 0; i < s.length(); i += k) {
+            ans.push_back(s.substr(i, k));
+        }
+        int m = ans.size();
+        string temp = ans[m - 1];
+        // cout << temp;
+        int len = temp.length(); 
+        // cout << k - len;
+        for (i = len; i < k; i++) 
+            temp += fill;        
+        ans[ans.size() - 1] = (temp);
+        
+        return ans;
+    }
+};
