@@ -1,0 +1,23 @@
+class Solution {
+public:
+    string decodeMessage(string key, string message) {
+        map<char, char> mp;
+        char a = ' ';
+        mp[a] = ' ';
+        int i = 0, j = 0;
+        while (i < 26 && j < key.length()) {
+            if (mp.find(key[j]) == mp.end()) {
+                mp[key[j]] = char('a' + i);
+                i++;
+            }
+
+            j++;            
+        }
+        string decode = "";
+        for (int i = 0; i < message.length(); i++) {
+            decode += mp[message[i]];
+        }
+        return decode;
+        
+    }
+};
