@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int maximumSum(vector<int>& nums) {
+        // vector<int> temp;
+        map<int, vector<int>> m;
+        for (auto i : nums) {
+            int digitSum = 0;
+            int j = i;
+            while(i > 0) {
+                digitSum += i % 10;
+                i /= 10;
+            }
+            m[digitSum].push_back(j)  ;    
+        }
+        
+        int maxSum = INT_MIN;
+        for (auto i : m) {
+            int n = i.second.size();
+            if (n == 2) {
+                maxSum = max(maxSum, (i.second.at(n - 1) + i.second.at(n - 2)));
+            } else if (n > 2) {
+                sort(i.second.begin(), i.second.end());
+                maxSum = max(maxSum, (i.second.at(n - 1) + i.second.at(n - 2)));
+            }
+                
+        }
+                  
+        
+        return maxSum != INT_MIN ? maxSum : -1;
+    }
+};
