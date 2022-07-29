@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool matchPattern(string word, string pattern) {
+        map<char, char> m;
+        set<char> s;
+        for (int i = 0; i < pattern.size(); i++) {
+            if (m.find(word[i]) != m.end()) {
+                if (m[word[i]] != pattern[i])
+                    return false;
+                else
+                    continue;
+            } else if (s.find(pattern[i]) != s.end()) {
+                return false;
+            }
+            m[word[i]] = pattern[i];
+            s.insert(pattern[i]);
+        }
+        return true;
+    }
+    
+    vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
+        vector<string> ans;
+        for (auto word : words) {
+            if (matchPattern(word, pattern))
+                ans.push_back(word);
+        }
+        return ans;
+    }
+};
